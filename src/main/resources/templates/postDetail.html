@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시글 상세</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h2 class="my-4" th:text="${post.title}">제목</h2>
+    <p><strong>작성자:</strong> <span th:text="${post.author}">작성자</span></p>
+    <p><strong>작성일:</strong> <span th:text="${{post.localDateTime}}">2023-01-01</span></p>
+    <p th:text="${post.content}">내용</p>
+    <a class="btn btn-primary" href="/posts">목록으로</a>
+</div>
+</body>
+</html>

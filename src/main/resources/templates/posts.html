@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시판</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h2 class="my-4">게시판</h2>
+    <div class="mb-3">
+        <a class="btn btn-primary" href="/posts/new">새 글 작성</a>
+    </div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>작성일</th>
+            <th>액션</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="post : ${posts}">
+            <td th:text="${post.id}">1</td>
+            <td><a th:href="@{/posts/{id}(id=${post.id})}" th:text="${post.title}">제목</a></td>
+            <td th:text="${post.author}">작성자</td>
+            <td th:text="${{post.localDateTime}}">2023-01-01</td>
+            <td>
+                <a class="btn btn-outline-primary btn-sm" th:href="@{/posts/edit/{id}(id=${post.id})}">수정</a>
+                <form th:action="@{/posts/delete/{id}(id=${post.id})}" method="post" style="display:inline;">
+                    <button class="btn btn-outline-danger btn-sm" type="submit">삭제</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

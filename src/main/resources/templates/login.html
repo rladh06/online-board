@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인폼</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .container {
+            display: flex;
+            justify-content: center;
+            height: 100vh;
+        }
+        .form-box {
+            width: 100%;
+            max-width: 600px;
+        }
+        .button-group {
+            display: flex;
+            justify-content: flex-start;
+        }
+        .button-group button {
+            margin-right: 10px; /* 버튼 간의 간격 */
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="form-box">
+        <h2>로그인폼</h2>
+        <form th:action th:object="${loginForm}" method="post">
+            <div th:if="${#fields.hasGlobalErrors()}" class="text-danger">
+                <p th:each="err : ${#fields.globalErrors()}" th:text="${err}">
+                </p>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="id">아이디</label>
+                <input class="form-control" type="text" name="loginId" id="id" th:field="*{loginId}" th:errorclass="field-error" />
+                <div th:errors="*{loginId}" class="text-danger"></div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="password">비밀번호</label>
+                <input class="form-control" type="password" name="password" id="password" th:field="*{password}" th:errorclass="field-error" />
+                <div th:errors="*{password}" class="text-danger"></div>
+            </div>
+            <div class="button-group">
+                <button class="btn btn-outline-primary btn-sm" type="submit" >로그인</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
